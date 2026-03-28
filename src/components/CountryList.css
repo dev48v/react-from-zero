@@ -1,0 +1,23 @@
+/* ============================================================
+   STEP 4 — CountryList Grid Layout
+   ============================================================
+   CSS Grid with auto-fill creates a responsive grid that
+   automatically adjusts the number of columns based on screen width.
+   No media queries needed!
+   ============================================================ */
+
+.country-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.country-list__message {
+  text-align: center;
+  padding: 3rem;
+  font-size: 1.2rem;
+  color: #666;
+}
