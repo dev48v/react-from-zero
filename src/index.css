@@ -1,0 +1,15 @@
+/* ============================================================
+   STEP 1 — Global Styles
+   ============================================================ */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  background-color: #f5f5f5;
+  color: #333;
+}
