@@ -15,9 +15,21 @@
   margin: 0 auto;
 }
 
+.country-list__controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 2rem 2rem 0;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
 .country-list__message {
   text-align: center;
   padding: 3rem;
   font-size: 1.2rem;
   color: #666;
+  grid-column: 1 / -1;
 }
