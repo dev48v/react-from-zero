@@ -1,0 +1,97 @@
+/* ============================================================
+   STEP 7 — CountryDetail Page Styles
+   ============================================================ */
+
+.detail {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.detail__back {
+  background: white;
+  border: none;
+  border-radius: 6px;
+  padding: 0.6rem 1.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+  transition: box-shadow 0.2s;
+}
+
+.detail__back:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.detail__content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.detail__flag {
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.detail__info h2 {
+  font-size: 2rem;
+  margin: 0 0 0.3rem 0;
+}
+
+.detail__official {
+  color: #666;
+  font-style: italic;
+  margin: 0 0 1.5rem 0;
+}
+
+.detail__facts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.detail__facts p {
+  margin: 0.4rem 0;
+  font-size: 0.95rem;
+}
+
+.detail__borders {
+  margin-top: 1.5rem;
+}
+
+.detail__border-btn {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 0.3rem 1rem;
+  margin: 0.3rem;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: background 0.2s;
+}
+
+.detail__border-btn:hover {
+  background: #667eea;
+  color: white;
+  border-color: #667eea;
+}
+
+.detail__message {
+  text-align: center;
+  padding: 3rem;
+  font-size: 1.2rem;
+  color: #666;
+}
+
+@media (max-width: 768px) {
+  .detail__content {
+    grid-template-columns: 1fr;
+  }
+  .detail__facts {
+    grid-template-columns: 1fr;
+  }
+}

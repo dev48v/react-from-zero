@@ -5,6 +5,7 @@
 // ============================================================
 
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { getAllCountries } from '../services/countryApi';
 import CountryCard from './CountryCard';
 import SearchBar from './SearchBar';
@@ -12,6 +13,7 @@ import RegionFilter from './RegionFilter';
 import './CountryList.css';
 
 function CountryList() {
+  const navigate = useNavigate();
   const [countries, setCountries] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -57,7 +59,7 @@ function CountryList() {
             <CountryCard
               key={country.cca3}
               country={country}
-              onClick={() => console.log('Clicked:', country.name.common)}
+              onClick={() => navigate(`/country/${country.cca3}`)}
             />
           ))
         )}
