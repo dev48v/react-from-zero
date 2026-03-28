@@ -1,27 +1,23 @@
 // ============================================================
 // STEP 4 — CountryList Component
 // STEP 5 — Added SearchBar with client-side filtering
-// ============================================================
-// Fetches all countries, then filters them locally by search text.
-//
-// Why filter on the client instead of calling the search API?
-//   - We already have all 250 countries loaded
-//   - Filtering in JS is instant — no network delay
-//   - The search API has rate limits; local filtering doesn't
+// STEP 6 — Added RegionFilter dropdown
 // ============================================================
 
 import { useState, useEffect } from 'react';
 import { getAllCountries } from '../services/countryApi';
 import CountryCard from './CountryCard';
 import SearchBar from './SearchBar';
+import RegionFilter from './RegionFilter';
 import './CountryList.css';
 
 function CountryList() {
   const [countries, setCountries] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  // New state for the search text
   const [search, setSearch] = useState('');
+  // New state for region filter
+  const [region, setRegion] = useState('');
 
   useEffect(() => {
     async function fetchCountries() {
@@ -38,12 +34,11 @@ function CountryList() {
     fetchCountries();
   }, []);
 
-  // Filter countries by search text (case-insensitive)
-  // .filter() creates a new array with only matching items
-  // .includes() checks if the search text is found anywhere in the name
-  const filtered = countries.filter((country) =>
-    country.name.common.toLowerCase().includes(search.toLowerCase())
-  );
+  // Chain two filters: first by name, then by region
+  // If region is "" (empty), the region filter passes everything through
+  const filtered = countries
+    .filter((c) => c.name.common.toLowerCase().includes(search.toLowerCase()))
+    .filter((c) => (region ? c.region === region : true));
 
   if (loading) return <div className="country-list__message">Loading countries...</div>;
   if (error) return <div className="country-list__message">Error: {error}</div>;
@@ -52,6 +47,7 @@ function CountryList() {
     <>
       <div className="country-list__controls">
         <SearchBar value={search} onChange={setSearch} />
+        <RegionFilter value={region} onChange={setRegion} />
       </div>
       <div className="country-list">
         {filtered.length === 0 ? (
