@@ -1,70 +1,100 @@
-# Getting Started with Create React App
+# react-from-zero
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A Country Explorer app built with **React + REST Countries API** — from scratch, one step at a time.
 
-## Available Scripts
+Browse 250+ countries, search by name, filter by region, and view detailed info including borders, currencies, and languages. All data comes from the free [REST Countries API](https://restcountries.com) — no API key needed.
 
-In the project directory, you can run:
+Part of the [TechFromZero](https://github.com/dev48v) series: learn a new technology every day by building a real project.
 
-### `npm start`
+## Quick Start
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```bash
+git clone https://github.com/dev48v/react-from-zero.git
+cd react-from-zero
+npm install
+npm start
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Opens at http://localhost:3000
 
-### `npm test`
+## Features
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Browse all 250+ countries with flags
+- Search countries by name (instant filtering)
+- Filter by region (Africa, Americas, Asia, Europe, Oceania)
+- Click a country → detailed view with population, currencies, languages
+- Click border countries → navigate between neighbors
+- Responsive grid layout (auto-adjusts columns)
+- Sticky header, smooth animations
 
-### `npm run build`
+## API
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Uses [REST Countries API](https://restcountries.com/v3.1) — completely free, no API key required.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+| Endpoint | Description |
+|----------|-------------|
+| `/all?fields=...` | All countries (filtered fields for smaller response) |
+| `/alpha/{code}` | Single country by 3-letter code |
+| `/region/{region}` | Countries by region |
+| `/name/{name}` | Search by name |
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Architecture
 
-### `npm run eject`
+```
+App (Router)
+├── Header (sticky, clickable → home)
+├── CountryList (home page)
+│   ├── SearchBar (controlled input → filters by name)
+│   ├── RegionFilter (dropdown → filters by continent)
+│   └── CountryCard[] (grid of cards)
+└── CountryDetail (detail page)
+    └── Border buttons → navigate to neighbor countries
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```
+src/
+├── App.js                  ← Root component + React Router
+├── components/
+│   ├── CountryCard.js      ← Single country card (flag + info)
+│   ├── CountryList.js      ← Grid of cards + search + filter
+│   ├── SearchBar.js        ← Search input (controlled component)
+│   └── RegionFilter.js     ← Region dropdown
+├── pages/
+│   └── CountryDetail.js    ← Full country detail with borders
+└── services/
+    └── countryApi.js       ← REST Countries API client
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Step-by-Step Commits
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Each commit builds on the previous one:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+1. **Project setup** — React app with header and folder structure
+2. **API client** — REST Countries fetch helpers with field filtering
+3. **CountryCard** — Reusable card component with flag, name, and info
+4. **CountryList** — Responsive grid layout with API data fetching
+5. **SearchBar** — Live filtering countries by name as you type
+6. **RegionFilter** — Dropdown to filter countries by continent
+7. **CountryDetail** — Detail page with routing, borders, and back navigation
+8. **Styling** — Sticky header, fade-in animations, clickable title
+9. **README** — This file
 
-## Learn More
+## Key React Concepts Covered
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+1. **Components** — Breaking UI into reusable pieces (CountryCard, SearchBar)
+2. **Props** — Passing data from parent to child
+3. **useState** — Managing component state (countries, search text, loading)
+4. **useEffect** — Fetching data on component mount
+5. **Lifting state up** — Search/filter state lives in CountryList, passed down to inputs
+6. **Conditional rendering** — Loading/error/empty states
+7. **React Router** — URL-based navigation between pages
+8. **useParams** — Extracting URL parameters
+9. **useNavigate** — Programmatic navigation
+10. **CSS Grid** — Responsive layout without media queries
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Tech Stack
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- **React 18** — UI library
+- **React Router** — Client-side routing
+- **REST Countries API** — Free country data (no key needed)
+- **CSS** — Custom styles (no UI framework)
